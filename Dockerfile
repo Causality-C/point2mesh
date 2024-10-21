@@ -20,6 +20,9 @@ RUN conda create -n point2mesh python=3.10 && echo "source activate point2mesh" 
 # update PATH environment variable
 ENV PATH="/workspace/miniconda3/envs/point2mesh/bin:$PATH"
 
+# Populate this with your architecture from: https://github.com/facebookresearch/pytorch3d/issues/1565
+ENV TORCH_CUDA_ARCH_LIST="Turing Ampere Ada Hopper" 
+
 # change the working directory to the repository
 WORKDIR /workspace/point2mesh
 COPY requirements.txt requirements.txt
