@@ -20,7 +20,12 @@ RUN conda create -n point2mesh python=3.10 && echo "source activate point2mesh" 
 # update PATH environment variable
 ENV PATH="/workspace/miniconda3/envs/point2mesh/bin:$PATH"
 
-
-# # change the working directory to the repository
+# change the working directory to the repository
 WORKDIR /workspace/point2mesh
-COPY . .
+COPY requirements.txt requirements.txt
+
+RUN pip install torch==2.4.0 torchvision==0.19.0 numpy==1.24.0
+
+RUN pip install git+https://github.com/facebookresearch/pytorch3d.git@stable
+
+COPY . . 
